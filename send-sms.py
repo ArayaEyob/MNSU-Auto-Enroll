@@ -12,8 +12,8 @@ from twilio.rest import Client
 
 
 # Twilio account information from environment variables
-account_sid = os.getenv("TWILIO_ACCOUNT_SID")
-auth_token = os.getenv("TWILIO_AUTH_TOKEN")
+account_sid = os.getenv("AC286bf29a5483c9de1014ef4937720e89")
+auth_token = os.getenv("28930b9a5e26d95080a9b3f0116b739a")
 twilio_phone_number = "+14132424123"  
 
 
@@ -60,3 +60,70 @@ def cart_is_empty(driver):
         print("Shopping Cart is Empty")
         return True
     return False
+
+def click_enroll(driver):
+    enroll_button = driver.find_element(By.CSS_SELECTOR, "a[id='DERIVED_SSR_FL_SSR_ENROLL_FL']")
+    enroll_button.click()
+
+# Method to click the validate button
+def click_validate(driver):
+    validate_button = driver.find_element(By.CSS_SELECTOR, "a[id='DERIVED_SSR_FL_SSR_VALIDATE_FL']")
+    validate_button.click()
+
+# Delay method
+def delay(seconds):
+    print(f"Start of {seconds} second delay")
+    time.sleep(seconds)
+    print(f"End of {seconds} second delay")
+
+# Method to parse class ID
+def parse_id(text):
+    return text.split("- ")[2]
+
+# Method to parse class name
+def parse_class_name(text):
+    return " ".join(text.split(" ")[:2])
+
+# Method to wait for the select class screen
+def wait_for_select_class_screen(driver):
+    WebDriverWait(driver, 10).until(
+        EC.visibility_of_element_located((By.CSS_SELECTOR, "span[id='DERIVED_SSR_FL_SSR_AVAIL_FL$0']"))
+    )
+
+# Method to wait for the validation screen
+def wait_for_validation_screen(driver):
+    WebDriverWait(driver, 10).until(
+        EC.visibility_of_element_located((By.CSS_SELECTOR, "span[id='DERIVED_REGFRM1_DESCRLONG$0']"))
+    )
+
+# Main method
+def main():
+    driver.get("https://sis.case.edu/psc/P92SCWR/EMPLOYEE/SA/c/NUI_FRAMEWORK.PT_LANDINGPAGE.GBL?")
+    driver.find_element(By.NAME, "SSO_Signin").click()
+
+    driver.find_element(By.ID, "username").send_keys(case_id)
+    driver.find_element(By.ID, "password").send_keys(password)
+    driver.find_element(By.ID, "login-submit").click()
+    driver.find_element(By.ID, "PTNUI_LAND_REC_GROUPLET_LBL$2").click()
+
+    go_to_shopping_cart(driver)
+    try:
+        wait_for_select_class_screen(driver)
+    except:
+        print("Slow internet probably")
+
+    while not cart_is_empty(driver):
+        delay(3)
+        go_to_shopping_cart(driver)
+        try:
+            wait_for_select_class_screen(driver)
+        except:
+            print("Slow internet probably")
+
+        # (Add the rest of the logic here for scrolling and enrolling in classes...)
+
+        send_sms(user_phone_number, "Your Shopping Cart is Empty!")
+        print("Program finished")
+
+if __name__ == "__main__":
+    main()
