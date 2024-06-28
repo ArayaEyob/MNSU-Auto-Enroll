@@ -142,7 +142,7 @@ def enroll_in_class(username, password):
         # Close the browser
         driver.quit()
 
-def send_sms_notification(message):`    `
+def send_sms_notification(message):
     # Your Twilio account SID and auth token
     account_sid = 'AC286bf29a5483c9de1014ef4937720e89'
     auth_token = '28930b9a5e26d95080a9b3f0116b739a'
