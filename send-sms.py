@@ -75,32 +75,15 @@ def enroll_in_class(username, password):
         # Allow time for the registration process to complete
         time.sleep(5)
 
-        # Wait additional time before closing the browser
+        # # Wait additional time before closing the browser
 
-          # Scroll into view and click the submit button
-        driver.execute_script("arguments[0].scrollIntoView(true);", submit_button)
-        time.sleep(1)  # Wait a moment for scrolling to complete
+        #   # Scroll into view and click the submit button
+        # driver.execute_script("arguments[0].scrollIntoView(true);", submit_button)
+        # time.sleep(1)  # Wait a moment for scrolling to complete
 
-        # Click the button using JavaScript to ensure it's clicked
-        driver.execute_script("arguments[0].click();", submit_button)
-        logging.info("Submit button clicked.")
-
-        # Wait for navigation to the next page
-        WebDriverWait(driver, 20).until(
-            EC.url_contains("https://eservices.minnstate.edu/registration/register/confirm.html")
-        )
-        driver.get("https://eservices.minnstate.edu/registration/register/confirm.html")
-        logging.info("Checkout chart")
-
-        # Allow time for the registration process to complete
-
-          # Scroll into view and click the submit button
-        driver.execute_script("arguments[0].scrollIntoView(true);", submit_button)
-        time.sleep(1)  # Wait a moment for scrolling to complete
-
-        # Click the button using JavaScript to ensure it's clicked
-        driver.execute_script("arguments[0].click();", submit_button)
-        logging.info("Submit button clicked.")
+        # # Click the button using JavaScript to ensure it's clicked
+        # driver.execute_script("arguments[0].click();", submit_button)
+        # logging.info("Submit button clicked.")
 
         # Wait for navigation to the next page
         WebDriverWait(driver, 20).until(
@@ -108,6 +91,8 @@ def enroll_in_class(username, password):
         )
         driver.get("https://eservices.minnstate.edu/registration/register/confirm.html")
         logging.info("Checkout chart")
+
+        
 
         # Allow time for the registration process to complete
         time.sleep(5)
@@ -118,26 +103,7 @@ def enroll_in_class(username, password):
         time.sleep(15)
 
 
-        # review_plan_link = driver.find_element(By.XPATH, '//*[@id="ViewCartForm"]/table/tbody[2]/tr[1]/td[1]/label')
-        # review_plan_link.click()
-        # logging.info("Navigated to review plan.")
-        # time.sleep(40)
-
-        # course_ids = ['005052', '006186']  # Example course IDs
-
-        # for course_id in course_ids:
-        #     checkbox = driver.find_element(By.XPATH, f"//*[@id='ViewCartForm']//input[@type='checkbox' and contains(@onclick, '{course_id}')]")
-        #     checkbox.click()
-
-        # time.sleep(10)
-
-        # # Click the "Select Course(s) to proceed to Register" button
-        # register_button = driver.find_element(By.XPATH, "//*[@id='ViewCartForm']//input[@value='Select Course(s) to proceed to Register']")
-        # register_button.click()
-
-        # # Allow time for the registration process to complete
-        # time.sleep(5)
-
+      
     finally:
         # Close the browser
         driver.quit()
