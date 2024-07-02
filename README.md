@@ -15,4 +15,4 @@ Get started now and take control of your academic destiny! 💪🏾
 
 [Click Here For Full Video Demonstration](https://www.loom.com/share/e94449a33db04aafb47e4cd04449d2b5?sid=4d070e2c-1b6b-47fd-a086-aa53c132c5d4)
 
-![](https://github.com/MMufuT/CWRU-Auto-Enroll/blob/main/ezgif-5-2d95600766.gif)
+![](https://github.com/ArayaEyob/chatty-gpitty/blob/main/Screenshot%202024-07-02%20072141.png)
